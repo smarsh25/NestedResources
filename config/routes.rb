@@ -2,6 +2,7 @@ NestedResources::Application.routes.draw do
 
 	# Listing routes for resources, also limiting routes to only
 	# those needed (index, new, create, show)
+	# (to support commenting on comments, try) resources :posts, :comments only: [:index, :show, :new, :create] do
 	resources :posts, only: [:index, :show, :new, :create] do
   	resources :comments, only: [:show, :new, :create]
 	end
