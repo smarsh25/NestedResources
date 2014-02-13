@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create, :show, :destroy]
  
  	# GET, list of posts
   def index
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
   	# collects nested attributes, for post & comment, from params
     new_post = params.require(:post).permit(:body, :link, comments_attributes: [:body])
 
-  	post = Post.create(new_post)
+  	post = current_user.posts.create(new_post)
   	redirect_to post_path(post.id)
   end
 
