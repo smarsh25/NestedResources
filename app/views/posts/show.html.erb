@@ -11,6 +11,9 @@
         <%= text_area_tag(:body, @post.body, size: "30x3", class: "form-control") %>
   	</div>
     </fieldset>
+    <a href="/posts/<%= @post.id %>/comments/new">Add a comment.</a>
+    <br>
+    <br>
   </div>
 </div>
 <div class='row'>
