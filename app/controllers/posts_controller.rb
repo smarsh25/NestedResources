@@ -15,6 +15,8 @@ class PostsController < ApplicationController
   def create
   	# collects nested attributes, for post & comment, from params
     new_post = params.require(:post).permit(:body, :link, comments_attributes: [:body])
+    # seems hacky, but add user id to comment (wasn't included in form params)
+    new_post["comments_attributes"]["0"]["user_id"] = current_user.id
 
   	post = current_user.posts.create(new_post)
   	redirect_to post_path(post.id)
